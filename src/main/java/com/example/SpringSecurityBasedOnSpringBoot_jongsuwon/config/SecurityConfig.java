@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -77,7 +78,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 /* user 계정 확인 메서드 */
                 .userDetailsService(userDetailsService);
 
-
+        http.sessionManagement()
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(false)
+                .and()
+            .sessionFixation().changeSessionId()
+            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
 
     }
 
