@@ -2,6 +2,7 @@ package com.example.SpringSecurityBasedOnSpringBoot_jongsuwon.controller;
 
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,11 @@ public class TestRestController {
     @GetMapping("/admin/other")
     public String adminOther(){
         return "adminOther";
+    }
+
+    @PostMapping("/")
+    public String postmappingTest(){
+        return "postmappingTestResult";
     }
 
 }
